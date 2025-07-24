@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Books</h5>
+                <p class="card-text display-6">{{ total_books }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Members</h5>
+                <p class="card-text display-6">{{ total_members }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Issued Books</h5>
+                <p class="card-text display-6">{{ issued_books }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Fines</h5>
+                <p class="card-text display-6">₹{{ total_fines }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="{{ url_for('manage_books') }}" class="btn btn-outline-primary me-2">Manage Books</a>
+<a href="{{ url_for('manage_members') }}" class="btn btn-outline-success me-2">Manage Members</a>
+<a href="{{ url_for('transactions') }}" class="btn btn-outline-warning me-2">Transactions</a>
+<a href="{{ url_for('reports') }}" class="btn btn-outline-danger">Reports</a>
+<a href="{{ url_for('manage_requests') }}" class="btn btn-outline-secondary mt-2">Manage Book Requests</a>
+
+{% endblock %}

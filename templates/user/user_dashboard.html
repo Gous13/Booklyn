@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-3">User Dashboard</h3>
+
+<!-- Quick Navigation -->
+<div class="mb-4">
+    <a href="{{ url_for('my_books') }}" class="btn btn-success me-2">My Books</a>
+    <a href="{{ url_for('request_book') }}" class="btn btn-info">Request a Book</a>
+</div>
+
+<div class="row">
+    {% for book in books %}
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ book[1] }}</h5>
+                <p class="card-text">Author: {{ book[2] }}</p>
+                <p class="card-text">Qty: {{ book[4] }}</p>
+                {% if book[4] > 0 %}
+                <a href="{{ url_for('issue_book', book_id=book[0]) }}" class="btn btn-primary btn-sm">Issue Book</a>
+                {% else %}
+                <button class="btn btn-secondary btn-sm" disabled>Not Available</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

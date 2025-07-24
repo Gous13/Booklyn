@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Transactions (Issue/Return)</h3>
+<form method="POST" class="row g-3">
+    <div class="col-md-4">
+        <select name="member_id" class="form-control" required>
+            <option value="">Select Member</option>
+            {% for m in members %}
+            <option value="{{ m[0] }}">{{ m[1] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4">
+        <select name="book_id" class="form-control" required>
+            <option value="">Select Book</option>
+            {% for b in books %}
+            <option value="{{ b[0] }}">{{ b[1] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-warning w-100">Issue Book</button>
+    </div>
+</form>
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Member</th>
+            <th>Book</th>
+            <th>Issue Date</th>
+            <th>Return Date</th>
+            <th>Fine</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rec in records %}
+        <tr>
+            <td>{{ rec[0] }}</td>
+            <td>{{ rec[1] }}</td>
+            <td>{{ rec[2] }}</td>
+            <td>{{ rec[3] }}</td>
+            <td>{{ rec[4] if rec[4] else 'Not Returned' }}</td>
+            <td>₹{{ rec[5] }}</td>
+            <td>
+                {% if not rec[4] %}
+                <a href="{{ url_for('return_book', transaction_id=rec[0]) }}" class="btn btn-success btn-sm">Return</a>
+                {% else %}Returned{% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

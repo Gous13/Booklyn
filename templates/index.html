@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero-section">
+    <h1 class="mb-4">Booklyn</h1>
+    <p class="lead text-muted mb-5">Manage books, issue, and track everything smartly!</p>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card hero-card p-4">
+                <h4 class="mb-3">Already a Member?</h4>
+                <a href="{{ url_for('login') }}" class="btn btn-primary w-100">Login</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card hero-card p-4">
+                <h4 class="mb-3">New to Library?</h4>
+                <a href="{{ url_for('signup') }}" class="btn btn-success w-100">Signup</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

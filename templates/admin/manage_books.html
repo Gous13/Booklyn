@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Manage Books</h3>
+<form method="POST" class="row g-3">
+    <div class="col-md-3">
+        <input type="text" name="title" class="form-control" placeholder="Title" required>
+    </div>
+    <div class="col-md-3">
+        <input type="text" name="author" class="form-control" placeholder="Author" required>
+    </div>
+    <div class="col-md-2">
+        <input type="text" name="category" class="form-control" placeholder="Category">
+    </div>
+    <div class="col-md-2">
+        <input type="number" name="quantity" class="form-control" placeholder="Qty" min="1" required>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Add Book</button>
+    </div>
+</form>
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Qty</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book[0] }}</td>
+            <td>{{ book[1] }}</td>
+            <td>{{ book[2] }}</td>
+            <td>{{ book[3] }}</td>
+            <td>{{ book[4] }}</td>
+            <td><a href="{{ url_for('delete_book', book_id=book[0]) }}" class="btn btn-danger btn-sm">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

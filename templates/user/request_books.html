@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-3">Request a Book</h3>
+<form method="POST" class="row g-3 mb-4">
+    <div class="col-md-5">
+        <input type="text" name="title" class="form-control" placeholder="Book Title" required>
+    </div>
+    <div class="col-md-5">
+        <input type="text" name="author" class="form-control" placeholder="Author">
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Request</button>
+    </div>
+</form>
+
+<h4>My Book Requests</h4>
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Request Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if requests %}
+            {% for r in requests %}
+            <tr>
+                <td>{{ r[0] }}</td>
+                <td>{{ r[1] }}</td>
+                <td>{{ r[2] }}</td>
+                <td>
+                    {% if r[3] == 'Approved' %}
+                        <span class="badge bg-success">Approved</span>
+                    {% elif r[3] == 'Rejected' %}
+                        <span class="badge bg-danger">Rejected</span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr><td colspan="4" class="text-center">No book requests yet.</td></tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}

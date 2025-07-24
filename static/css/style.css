@@ -1,0 +1,15 @@
+.landing-page {
+    background-image: url("../images/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 80vh;
+    border-radius: 15px;
+    position: relative;
+}
+
+.landing-page .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5rem;
+    border-radius: 15px;
+}

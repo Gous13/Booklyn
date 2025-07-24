@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Manage Members</h3>
+<form method="POST" class="row g-3">
+    <div class="col-md-3">
+        <input type="text" name="name" class="form-control" placeholder="Name" required>
+    </div>
+    <div class="col-md-3">
+        <input type="email" name="email" class="form-control" placeholder="Email" required>
+    </div>
+    <div class="col-md-3">
+        <input type="text" name="phone" class="form-control" placeholder="Phone">
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-success w-100">Add Member</button>
+    </div>
+</form>
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member[0] }}</td>
+            <td>{{ member[1] }}</td>
+            <td>{{ member[2] }}</td>
+            <td>{{ member[3] }}</td>
+            <td><a href="{{ url_for('delete_member', member_id=member[0]) }}" class="btn btn-danger btn-sm">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Manage Book Requests</h3>
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Book Title</th>
+            <th>Author</th>
+            <th>Request Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for req in requests %}
+        <tr>
+            <td>{{ req[0] }}</td>
+            <td>{{ req[1] }}</td>
+            <td>{{ req[2] }}</td>
+            <td>{{ req[3] }}</td>
+            <td>{{ req[4] }}</td>
+            <td class="status-{{ req[5] | lower }}">{{ req[5] }}</td>
+            <td>
+                {% if req[5] == "Pending" %}
+                <a href="{{ url_for('update_request', request_id=req[0], action='approve') }}"
+                   class="btn btn-success btn-sm confirm-action"
+                   data-message="Approve this request?">Approve</a>
+                <a href="{{ url_for('update_request', request_id=req[0], action='reject') }}"
+                   class="btn btn-danger btn-sm confirm-action"
+                   data-message="Reject this request?">Reject</a>
+                {% else %}
+                <span class="badge 
+                    {% if req[5] == 'Approved' %}bg-success
+                    {% elif req[5] == 'Rejected' %}bg-danger
+                    {% else %}bg-secondary{% endif %}">
+                    {{ req[5] }}
+                </span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

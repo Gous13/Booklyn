@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Reports</h3>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card bg-primary text-white p-3">
+            <h5>Daily Issues</h5>
+            <h3>{{ daily_issues }}</h3>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-success text-white p-3">
+            <h5>Weekly Issues</h5>
+            <h3>{{ weekly_issues }}</h3>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-warning text-white p-3">
+            <h5>Monthly Issues</h5>
+            <h3>{{ monthly_issues }}</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

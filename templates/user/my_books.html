@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>My Issued Books</h3>
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Issue Date</th>
+            <th>Return Deadline</th>
+            <th>Return Date</th>
+            <th>Fine</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if my_records %}
+            {% for r in my_records %}
+            <tr>
+                <td>{{ r[0] }}</td>
+                <td>{{ r[1] }}</td>
+                <td>
+                    {% set issue_date = r[1] | datetimeformat %}
+                    {{ (issue_date + timedelta(days=7)).strftime('%Y-%m-%d') }}
+                </td>
+                <td>{{ r[2] if r[2] else 'Not Returned' }}</td>
+                <td>
+                    {% if r[3] > 0 %}
+                        <span class="badge bg-danger">₹{{ r[3] }}</span>
+                    {% else %}
+                        <span class="badge bg-success">0</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr><td colspan="5" class="text-center">No issued books yet.</td></tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}
