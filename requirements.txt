@@ -4,8 +4,5 @@ Jinja2==3.1.2
 Werkzeug==2.3.7
 itsdangerous==2.1.2
 
-# Database (SQLite)
-pysqlite3-binary==0.5.2  # For Render (some environments require this)
-
 # Optional (only if you use these in your project)
 gunicorn==21.2.0  # Required for Render Deployment
